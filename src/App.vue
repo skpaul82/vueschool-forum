@@ -2,7 +2,9 @@
   <!-- <router-link :to="{ name: 'Home' }">
     <img alt="Vue logo" src="./assets/logo.png" />
   </router-link> -->
+  <AppHeader/>
   <div class="container">
+
     <router-view/>
   </div>
 </template>

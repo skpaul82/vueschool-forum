@@ -34,12 +34,10 @@
 </template>
 
 <script>
-import AppDate from '@/components/AppDate'
 import sourceData from '@/data.json'
 export default {
   name: 'ThreadList',
   components: {
-    AppDate
   },
   props: {
     threads: {
