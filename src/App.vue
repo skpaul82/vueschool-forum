@@ -1,7 +1,7 @@
 <template>
-  <router-link :to="{ name: 'Home' }">
+  <!-- <router-link :to="{ name: 'Home' }">
     <img alt="Vue logo" src="./assets/logo.png" />
-  </router-link>
+  </router-link> -->
   <div class="container">
     <router-view/>
   </div>

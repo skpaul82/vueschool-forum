@@ -1,33 +1,26 @@
 <template>
-  <div class="col-large push-top">
-    <h1>{{ thread.title }}</h1>
-
-    <div v-for="postId in thread.posts" :key="postId" class="post-list">
+    <div v-for="post in posts" :key="post.id" class="post-list">
       <div class="post">
         <div class="user-info">
           <a href="profile.html#profile-details" class="user-name" >
-            {{ userById(postById(postId).userId).name }}
+            {{ userById(post.userId).name }}
           </a>
 
           <a href="profile.html#profile-details">
             <img
               class="avatar-large"
-              :src="userById(postById(postId).userId).avatar"
+              :src="userById(post.userId).avatar"
               alt=""
             />
           </a>
 
-          <p class="desktop-only text-small">{{ thread.posts.length }} posts</p>
-
-          <p class="desktop-only text-small">23 threads</p>
-
-          <span class="online desktop-only">online</span>
+          <p class="desktop-only text-small">{{ posts.length }} posts</p>
         </div>
 
         <div class="post-content">
           <div>
             <p>
-              {{ postById(postId).text }}
+              {{ post.text }}
             </p>
           </div>
           <a
@@ -59,34 +52,25 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
 import sourceData from '@/data.json'
+
 export default {
+  name: 'PostList',
   props: {
-    id: {
+    posts: {
       required: true,
-      type: String
+      type: Array
     }
   },
   data () {
     return {
-      threads: sourceData.threads,
-      posts: sourceData.posts,
       users: sourceData.users
     }
   },
-  computed: {
-    thread () {
-      return this.threads.find(thread => thread.id === this.id)
-    }
-  },
   methods: {
-    postById (postId) {
-      return this.posts.find((p) => p.id === postId)
-    },
     userById (userId) {
       return this.users.find((u) => u.id === userId)
     }
@@ -95,7 +79,6 @@ export default {
 </script>
 
 <style scoped>
-
 .post-list {
     margin-top: 20px;
 }
