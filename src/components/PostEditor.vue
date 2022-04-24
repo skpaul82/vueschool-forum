@@ -32,7 +32,7 @@ export default {
       const post = {
         id: postId,
         text: this.text,
-        publishdAt: Math.floor(Date.now() / 1000),
+        publishedAt: Math.floor(Date.now() / 1000),
         userId: '7uVPJS9GHoftN58Z2MXCYDqmNAh2'
       }
       this.$emit('save', { post })

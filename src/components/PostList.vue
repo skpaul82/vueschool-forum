@@ -23,32 +23,10 @@
               {{ post.text }}
             </p>
           </div>
-          <a
-            href="#"
-            style="margin-left: auto"
-            class="link-unstyled"
-            title="Make a change"
-            ><i class="fa fa-pencil"></i
-          ></a>
         </div>
 
-        <div class="post-date text-faded">6 hours ago</div>
-
-        <div class="reactions">
-          <ul>
-            <li>💡</li>
-            <li>❤️</li>
-            <li>👎</li>
-            <li>👍</li>
-            <li>👌</li>
-          </ul>
-          <button class="btn-xsmall"><span class="emoji">❤️</span>️ 3</button>
-          <button class="btn-xsmall active-reaction">
-            <span class="emoji">👌️</span>️ 1
-          </button>
-          <button class="btn-xsmall">
-            + <i class="fa fa-smile-o emoji"></i>
-          </button>
+        <div class="post-date text-faded" :title="humanFriendlyDate(post.publishedAt)">
+            {{ diffForHumans(post.publishedAt) }}
         </div>
       </div>
     </div>
@@ -56,6 +34,11 @@
 
 <script>
 import sourceData from '@/data.json'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+import localizedDate from 'dayjs/plugin/localizedFormat'
+dayjs.extend(relativeTime)
+dayjs.extend(localizedDate)
 
 export default {
   name: 'PostList',
@@ -73,6 +56,12 @@ export default {
   methods: {
     userById (userId) {
       return this.users.find((u) => u.id === userId)
+    },
+    diffForHumans (timestamp) {
+      return dayjs.unix(timestamp).fromNow()
+    },
+    humanFriendlyDate (timestamp) {
+      return dayjs.unix(timestamp).format('lll')
     }
   }
 }

@@ -10,4 +10,7 @@ npm i --save @fortawesome/free-brands-svg-icons
 ```
 
 2. Import in main.js file
-3.
+3. 
+4. Adding Human Readable Dates
+   1. use Dayjs library - https://day.js.org/
+   2. npm install dayjs
